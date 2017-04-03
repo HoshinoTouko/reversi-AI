@@ -11,15 +11,42 @@ class reversi:
         self.map[3][4] = 2
 
     def move(self, x, y):
-        if (x, y) in self.findLegal():
+        legalList = self.findLegal()
+        if (x, y) in legalList:
             reversiPieces = self.findReversi(x, y)
             self.setP((x, y), self.turn)
             for reversiPiece in reversiPieces:
                 self.setP(reversiPiece, self.turn)
             self.next()
+        # Check who win
+        legalList = self.findLegal()
+        if len(legalList) == 0:
+            self.next()
+            legalList = self.findLegal()
+            if len(legalList) == 0:
+                data = self.countMap()
+                print (data[0] > data[1]) and "Black win" \
+                    or (data[0] == data[1]) and "Tie" \
+                    or (data[0] < data[1]) and "White win"
+                return 0
+            else:
+                return 1
+        else:
+            return 1
 
     def setP(self, (x, y), turn):
         self.map[y][x] = turn + 1
+
+    def countMap(self):
+        black = 0
+        white = 0
+        for y in self.map:
+            for x in y:
+                if x == 1:
+                    black += 1
+                elif x == 2:
+                    white += 1
+        return (black, white, 64-black-white)
 
     def next(self):
         self.turn = (self.turn + 1) % 2
@@ -37,6 +64,7 @@ class reversi:
                 # If the position is not blank, pass it
                 if self.map[y][x] != 0:
                     continue
+                isLegal = False
                 for i in (-1, 0, 1):
                     for j in (-1, 0, 1):
                         # 1st. step:
@@ -50,7 +78,6 @@ class reversi:
                         # Try that if the piece can 'eat' some another colour piece
                         tempx = x
                         tempy = y
-                        isLegal = False
                         while 1:
                             tempx += j
                             tempy += i

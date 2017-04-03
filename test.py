@@ -10,9 +10,11 @@ while 1:
     y = input("y: ")
     if (x, y) in legalList:
         re.showReversi(x, y)
-        re.move(x, y)
+        result = re.move(x, y)
     else:
         print "illegal, please reinput"
         continue
+    if result == 0:
+        break
 
 raw_input()
