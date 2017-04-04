@@ -5,6 +5,7 @@ class reversi:
     def __init__(self):
         self.map = [[0] * 8 for i in range(8)]
         self.turn = 0 # 0 means black, 1 means white
+        self.winner = ""
         self.map[3][3] = 1
         self.map[4][3] = 2
         self.map[4][4] = 1
@@ -25,9 +26,15 @@ class reversi:
             legalList = self.findLegal()
             if len(legalList) == 0:
                 data = self.countMap()
-                print (data[0] > data[1]) and "Black win" \
-                    or (data[0] == data[1]) and "Tie" \
-                    or (data[0] < data[1]) and "White win"
+                if data[0] > data[1]:
+                    print "X win"
+                    self.winner = "X"
+                elif data[0] == data[1]:
+                    print "Tie"
+                    self.winner = "Tie"
+                elif data[0] < data[1]:
+                    print "O win"
+                    self.winner = "O"
                 return 0
             else:
                 return 1

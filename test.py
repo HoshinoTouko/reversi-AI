@@ -1,7 +1,7 @@
 #coding=utf-8
-import reversi as re
+import reversi as ree
 
-re = re.reversi()
+re = ree.reversi()
 while 1:
     re.show()
     re.showLegal()
