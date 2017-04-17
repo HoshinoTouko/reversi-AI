@@ -4,7 +4,7 @@
 class reversi:
     def __init__(self):
         self.map = [[0] * 8 for i in range(8)]
-        self.turn = 0 # 0 means black, 1 means white
+        self.turn = 0  # 0 means black, 1 means white
         self.winner = ""
         self.map[3][3] = 1
         self.map[4][3] = 2
@@ -27,19 +27,22 @@ class reversi:
             if len(legalList) == 0:
                 data = self.countMap()
                 if data[0] > data[1]:
-                    print "X win"
+                    # print "X win"
                     self.winner = "X"
                 elif data[0] == data[1]:
-                    print "Tie"
+                    # print "Tie"
                     self.winner = "Tie"
                 elif data[0] < data[1]:
-                    print "O win"
+                    # print "O win"
                     self.winner = "O"
                 return 0
             else:
                 return 1
         else:
             return 1
+
+    def moveByTuple(self, t):
+        return self.move(t[0], t[1])
 
     def setP(self, (x, y), turn):
         self.map[y][x] = turn + 1
@@ -172,3 +175,4 @@ class reversi:
                     print "O",
             j += 1
             print ""
+        print "================="
