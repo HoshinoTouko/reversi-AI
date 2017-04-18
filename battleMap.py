@@ -3,7 +3,7 @@
 
 import reversi as ree
 import copy
-import AI.aiV0.aiV0 as ai1
+import AI.aiV1.v1 as ai1
 import AI.aiV0.aiV0 as ai2
 
 
@@ -17,6 +17,7 @@ def run(times):
         re = ree.reversi()
         while 1:
             # re.show()
+            # raw_input("")
             tempRe = copy.deepcopy(re)
             if re.turn == 0:
                 nextMove = ai1.next(tempRe)
@@ -32,6 +33,8 @@ def run(times):
                     stat["Tie"] += 1
                 break
     print stat
+    print "X is " + ai1.info()
+    print "O is " + ai2.info()
 
 
 times = input("Times: ")

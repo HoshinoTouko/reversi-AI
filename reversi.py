@@ -58,6 +58,14 @@ class reversi:
                     white += 1
         return (black, white, 64-black-white)
 
+    def count(self, piece):
+        count = 0
+        for y in self.map:
+            for x in y:
+                if x == piece:
+                    count += 1
+        return count
+
     def next(self):
         self.turn = (self.turn + 1) % 2
 
