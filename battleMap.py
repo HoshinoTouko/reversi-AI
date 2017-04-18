@@ -42,7 +42,7 @@ def run(times):
                     else:
                         stat["AI1win"] += 1
                 elif re.winner == "Tie":
-                    stat["Tie"] += 1
+                    stat["Tie"] += 1 
                 break
     print stat
     print "AI1 is " + ai1.info()
