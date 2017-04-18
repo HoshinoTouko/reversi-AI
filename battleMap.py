@@ -3,8 +3,8 @@
 
 import reversi as ree
 import copy
-import AI.aiV0 as ai1
-import AI.aiV0 as ai2
+import AI.aiV0.aiV0 as ai1
+import AI.aiV0.aiV0 as ai2
 
 
 def run(times):
